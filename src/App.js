@@ -18,6 +18,7 @@ import {
   createNote as createNoteMutation,
   deleteNote as deleteNoteMutation,
 } from "./graphql/mutations";
+import { Post, PostStatus } from "./models";
 
 const App = ({ signOut }) => {
   const [notes, setNotes] = useState([]);
@@ -40,7 +41,16 @@ const App = ({ signOut }) => {
   );
   setNotes(notesFromAPI);
   }
-
+  async function Testdatastore(event) {
+    const result= await DataStore.save(
+      new Post({
+        title: 'My First Post',
+        rating: 10,
+        status: PostStatus.INACTIVE
+      })
+    );
+    console.log(result)
+  }
   async function createNote(event) {
     event.preventDefault();
     const form = new FormData(event.target);
@@ -48,9 +58,7 @@ const App = ({ signOut }) => {
     const data = {
       name: form.get("name"),
       description: form.get("description"),
-      image: image.name,
     };
-    if (!!data.image) await Storage.put(data.name, image);
     await API.graphql({
       query: createNoteMutation,
       variables: { input: data },
@@ -114,6 +122,7 @@ const App = ({ signOut }) => {
         ))}
       </View>
       <Button onClick={signOut}>Sign Out</Button>
+      <Button onClick={Testdatastore}>Data Store</Button>
     </View><View
         name="image"
         as="input"
@@ -121,11 +130,5 @@ const App = ({ signOut }) => {
         style={{ alignSelf: "end" }} /></>
   );
 };
-await DataStore.save(
-  new Post({
-    title: 'My First Post',
-    rating: 10,
-    status: PostStatus.INACTIVE
-  })
-);
+
 export default withAuthenticator(App);
