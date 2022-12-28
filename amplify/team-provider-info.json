@@ -17,6 +17,9 @@
       },
       "api": {
         "amplifyapp1": {}
+      },
+      "storage": {
+        "newstorage": {}
       }
     }
   }

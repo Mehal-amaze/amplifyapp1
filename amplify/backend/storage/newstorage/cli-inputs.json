@@ -1,0 +1,14 @@
+{
+  "resourceName": "newstorage",
+  "policyUUID": "39c6d7e5",
+  "bucketName": "amplifyapp2131",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
