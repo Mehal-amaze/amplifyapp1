@@ -8,3 +8,15 @@ type Note @model @auth(rules: [ { allow: public } ] ){
   description: String
   image: String
 }
+type Post @model {
+  id: ID!
+  title: String!
+  status: PostStatus!
+  rating: Int
+  content: String
+}
+
+enum PostStatus {
+  ACTIVE
+  INACTIVE
+}

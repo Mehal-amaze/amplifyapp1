@@ -2,10 +2,15 @@
 import { initSchema } from '@aws-amplify/datastore';
 import { schema } from './schema';
 
+const PostStatus = {
+  "ACTIVE": "ACTIVE",
+  "INACTIVE": "INACTIVE"
+};
 
-
-const { Note } = initSchema(schema);
+const { Note, Post } = initSchema(schema);
 
 export {
-  Note
+  Note,
+  Post,
+  PostStatus
 };

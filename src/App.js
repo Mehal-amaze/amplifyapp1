@@ -12,6 +12,7 @@ import {
   View,
   withAuthenticator,
 } from '@aws-amplify/ui-react';
+import { DataStore } from 'aws-amplify';
 import { listNotes } from "./graphql/queries";
 import {
   createNote as createNoteMutation,
@@ -120,5 +121,11 @@ const App = ({ signOut }) => {
         style={{ alignSelf: "end" }} /></>
   );
 };
-
+await DataStore.save(
+  new Post({
+    title: 'My First Post',
+    rating: 10,
+    status: PostStatus.INACTIVE
+  })
+);
 export default withAuthenticator(App);
